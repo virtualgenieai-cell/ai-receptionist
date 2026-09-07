@@ -1,0 +1,1073 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Always Answered — AI Receptionist</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --alabaster: #F2EFE7;
+      --parchment: #E7E1D5;
+      --olive: #18201C;
+      --espresso: #211E19;
+      --muted: #626861;
+      --copper: #A85C3B;
+      --ivory: #F4F0E8;
+      --line: #C9C2B5;
+
+      --serif: "DM Serif Display", Georgia, serif;
+      --sans: "IBM Plex Sans", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--alabaster);
+      color: var(--espresso);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1320px, calc(100% - 80px));
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+
+    header {
+      height: 92px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      z-index: 10;
+    }
+
+    .nav {
+      width: min(1320px, calc(100% - 80px));
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -.02em;
+    }
+
+    .brand span {
+      color: var(--copper);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 34px;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-cta {
+      justify-self: end;
+      font-size: 13px;
+      border-bottom: 1px solid var(--espresso);
+      padding-bottom: 3px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: calc(100vh - 92px);
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 80px;
+      align-items: center;
+      padding: 90px 0 120px;
+    }
+
+    .eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(72px, 8.2vw, 132px);
+      font-weight: 400;
+      line-height: .88;
+      letter-spacing: -.045em;
+      max-width: 1000px;
+    }
+
+    .hero h1 em {
+      color: var(--copper);
+      font-style: normal;
+    }
+
+    .hero-copy {
+      max-width: 440px;
+      margin-top: 50px;
+      margin-left: 12%;
+    }
+
+    .hero-copy p {
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .hero-link {
+      display: inline-block;
+      margin-top: 28px;
+      font-size: 13px;
+      border-bottom: 1px solid var(--espresso);
+      padding-bottom: 6px;
+    }
+
+    /* CALL VISUAL */
+
+    .call-window {
+      background: var(--parchment);
+      padding: 32px;
+      min-height: 470px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-left: 1px solid var(--line);
+    }
+
+    .call-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .call-content {
+      padding: 40px 10px;
+    }
+
+    .call-person {
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .call-text {
+      font-family: var(--serif);
+      font-size: 31px;
+      line-height: 1.15;
+      max-width: 390px;
+    }
+
+    .call-response {
+      margin-top: 55px;
+      padding-left: 24px;
+      border-left: 2px solid var(--copper);
+    }
+
+    .call-status {
+      font-size: 9px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--copper);
+    }
+
+    /* DARK SECTION */
+
+    .dark {
+      background: var(--olive);
+      color: var(--ivory);
+    }
+
+    .answer-section {
+      padding: 150px 0;
+    }
+
+    .answer-grid {
+      display: grid;
+      grid-template-columns: 1fr .7fr;
+      gap: 120px;
+      align-items: center;
+    }
+
+    .answer-title {
+      font-family: var(--serif);
+      font-size: clamp(70px, 8vw, 120px);
+      line-height: .9;
+      font-weight: 400;
+      letter-spacing: -.045em;
+    }
+
+    .answer-copy {
+      margin-top: 50px;
+      max-width: 450px;
+      color: #B9BDB7;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* LIVE CALL */
+
+    .live-call {
+      border-top: 1px solid rgba(244, 240, 232, .25);
+      border-bottom: 1px solid rgba(244, 240, 232, .25);
+    }
+
+    .live-row {
+      padding: 24px 0;
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 25px;
+      border-bottom: 1px solid rgba(244, 240, 232, .12);
+    }
+
+    .live-row:last-child {
+      border-bottom: none;
+    }
+
+    .live-time {
+      font-size: 10px;
+      letter-spacing: .12em;
+      color: #8D938D;
+    }
+
+    .live-label {
+      font-size: 9px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 8px;
+    }
+
+    .live-text {
+      font-family: var(--serif);
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    /* CALENDAR */
+
+    .calendar-section {
+      padding: 150px 0;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 120px;
+      align-items: center;
+    }
+
+    .calendar-title {
+      font-family: var(--serif);
+      font-size: clamp(60px, 7vw, 105px);
+      line-height: .92;
+      letter-spacing: -.04em;
+      font-weight: 400;
+    }
+
+    .calendar-copy {
+      margin-top: 38px;
+      max-width: 400px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .calendar {
+      background: var(--parchment);
+      padding: 30px;
+      border: 1px solid var(--line);
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .calendar-days {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .day {
+      min-height: 250px;
+      border-right: 1px solid var(--line);
+      padding: 20px 14px;
+    }
+
+    .day:last-child {
+      border-right: none;
+    }
+
+    .day-name {
+      font-size: 9px;
+      letter-spacing: .14em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .appointment {
+      margin-top: 80px;
+      background: var(--olive);
+      color: var(--ivory);
+      padding: 15px;
+      font-size: 11px;
+    }
+
+    .appointment strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 400;
+      margin-bottom: 5px;
+    }
+
+    /* PERFORMANCE */
+
+    .performance {
+      padding: 150px 0;
+    }
+
+    .performance-heading {
+      max-width: 850px;
+      font-family: var(--serif);
+      font-size: clamp(60px, 7vw, 105px);
+      line-height: .92;
+      font-weight: 400;
+      letter-spacing: -.04em;
+    }
+
+    .metrics {
+      margin-top: 110px;
+      display: grid;
+      grid-template-columns: 1.4fr repeat(3, 1fr);
+      align-items: end;
+      border-top: 1px solid rgba(244, 240, 232, .2);
+      border-bottom: 1px solid rgba(244, 240, 232, .2);
+    }
+
+    .metric {
+      padding: 35px 30px;
+      border-right: 1px solid rgba(244, 240, 232, .12);
+    }
+
+    .metric:last-child {
+      border-right: none;
+    }
+
+    .metric-value {
+      font-family: var(--serif);
+      font-size: 64px;
+      line-height: 1;
+    }
+
+    .metric:first-child .metric-value {
+      font-size: 105px;
+    }
+
+    .metric-label {
+      margin-top: 12px;
+      font-size: 9px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #8D938D;
+    }
+
+    /* BUSINESS */
+
+    .business {
+      padding: 150px 0;
+    }
+
+    .business-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 120px;
+    }
+
+    .business-title {
+      font-family: var(--serif);
+      font-size: clamp(70px, 8vw, 120px);
+      line-height: .9;
+      font-weight: 400;
+    }
+
+    .business-copy {
+      max-width: 600px;
+      font-family: var(--serif);
+      font-size: 44px;
+      line-height: 1.1;
+    }
+
+    .business-copy span {
+      color: var(--copper);
+    }
+
+    /* INDUSTRIES */
+
+    .industries {
+      padding: 130px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .industry {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      padding: 22px 0;
+      transition:
+        padding-left .5s cubic-bezier(.16,1,.3,1),
+        color .5s ease;
+    }
+
+    .industry:hover {
+      padding-left: 35px;
+      color: var(--copper);
+    }
+
+    .industry-name {
+      font-family: var(--serif);
+      font-size: clamp(42px, 5vw, 78px);
+      line-height: 1;
+    }
+
+    .industry-description {
+      font-size: 11px;
+      color: var(--muted);
+      max-width: 260px;
+      text-align: right;
+    }
+
+    /* FINAL */
+
+    .final {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      padding: 130px 0;
+    }
+
+    .final-label {
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .final-title {
+      font-family: var(--serif);
+      font-size: clamp(80px, 11vw, 170px);
+      line-height: .85;
+      letter-spacing: -.05em;
+      font-weight: 400;
+      max-width: 1200px;
+    }
+
+    .final-title em {
+      color: var(--copper);
+      font-style: normal;
+    }
+
+    .final-link {
+      display: inline-block;
+      margin-top: 60px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--espresso);
+      padding-bottom: 8px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 35px 0;
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+
+      .container,
+      .nav {
+        width: min(100% - 40px, 1320px);
+      }
+
+      .nav {
+        grid-template-columns: 1fr auto;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero,
+      .answer-grid,
+      .calendar-grid,
+      .business-grid {
+        grid-template-columns: 1fr;
+        gap: 70px;
+      }
+
+      .hero {
+        padding-top: 70px;
+      }
+
+      .hero-copy {
+        margin-left: 0;
+      }
+
+      .call-window {
+        min-height: 400px;
+      }
+
+      .metrics {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .metric:first-child {
+        grid-column: span 2;
+      }
+
+      .metric:first-child .metric-value {
+        font-size: 80px;
+      }
+
+      .calendar-days {
+        overflow-x: auto;
+      }
+
+      .day {
+        min-width: 130px;
+      }
+
+      .business-copy {
+        font-size: 34px;
+      }
+
+      .industry {
+        display: block;
+      }
+
+      .industry-description {
+        text-align: left;
+        margin-top: 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      header {
+        height: 75px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 70px 0 90px;
+      }
+
+      h1 {
+        font-size: 64px;
+      }
+
+      .answer-section,
+      .calendar-section,
+      .performance,
+      .business {
+        padding: 90px 0;
+      }
+
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .metric:first-child {
+        grid-column: auto;
+      }
+
+      .metric {
+        border-right: none;
+        border-bottom: 1px solid rgba(244, 240, 232, .12);
+      }
+
+      .metric:first-child .metric-value {
+        font-size: 75px;
+      }
+
+      .live-row {
+        grid-template-columns: 65px 1fr;
+      }
+
+      .final {
+        min-height: 75vh;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav class="nav">
+    <a class="brand" href="#">ALWAYS<span>.</span></a>
+
+    <div class="nav-links">
+      <a href="#product">Product</a>
+      <a href="#performance">Performance</a>
+      <a href="#industries">Industries</a>
+    </div>
+
+    <a class="nav-cta" href="#contact">Talk to us →</a>
+  </nav>
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="container hero">
+
+    <div>
+      <div class="eyebrow">
+        AI RECEPTIONIST / ALWAYS ON
+      </div>
+
+      <h1>
+        Tired of losing
+        revenue to
+        <em>missed calls?</em>
+      </h1>
+
+      <div class="hero-copy">
+        <p>
+          Your customers call when they're ready.
+          Our receptionist answers when you can't —
+          talks naturally, handles the conversation,
+          and books directly into your calendar.
+        </p>
+
+        <a class="hero-link" href="#contact">
+          Get your receptionist →
+        </a>
+      </div>
+    </div>
+
+
+    <div class="call-window">
+
+      <div class="call-meta">
+        <span>Incoming call</span>
+        <span>10:43 PM</span>
+      </div>
+
+      <div class="call-content">
+
+        <div class="call-person">
+          Caller
+        </div>
+
+        <div class="call-text">
+          “Hi, I'm looking to book an appointment for next week.”
+        </div>
+
+        <div class="call-response">
+
+          <div class="call-person">
+            AI Receptionist
+          </div>
+
+          <div class="call-text">
+            “Absolutely. I have Thursday at 2:30 PM available.”
+          </div>
+
+          <div class="call-status">
+            Appointment confirmed
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="call-meta">
+        <span>Call duration</span>
+        <span>01:42</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ANSWER -->
+
+  <section id="product" class="dark answer-section">
+
+    <div class="container answer-grid">
+
+      <div>
+
+        <div class="eyebrow">
+          EVERY CALL / COVERED
+        </div>
+
+        <h2 class="answer-title">
+          Your phone rings.<br>
+          Someone answers.
+        </h2>
+
+        <p class="answer-copy">
+          After hours. During lunch. While you're already
+          helping someone else. The conversation doesn't
+          disappear into voicemail.
+        </p>
+
+      </div>
+
+
+      <div class="live-call">
+
+        <div class="live-row">
+          <div class="live-time">10:43</div>
+
+          <div>
+            <div class="live-label">Incoming</div>
+            <div class="live-text">
+              “I'm looking to book an appointment.”
+            </div>
+          </div>
+        </div>
+
+        <div class="live-row">
+          <div class="live-time">10:44</div>
+
+          <div>
+            <div class="live-label">Receptionist</div>
+            <div class="live-text">
+              “I can help with that. Thursday afternoon
+              is available.”
+            </div>
+          </div>
+        </div>
+
+        <div class="live-row">
+          <div class="live-time">10:45</div>
+
+          <div>
+            <div class="live-label">Confirmed</div>
+            <div class="live-text">
+              Appointment added to calendar.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CALENDAR -->
+
+  <section class="calendar-section">
+
+    <div class="container calendar-grid">
+
+      <div>
+
+        <div class="eyebrow">
+          CALENDAR / CONNECTED
+        </div>
+
+        <h2 class="calendar-title">
+          From “I'd like
+          to book” to
+          “You're all set.”
+        </h2>
+
+        <p class="calendar-copy">
+          Your receptionist checks availability in real time
+          and schedules the appointment while the customer
+          is still on the phone.
+        </p>
+
+      </div>
+
+
+      <div class="calendar">
+
+        <div class="calendar-header">
+          <span>September 2026</span>
+          <span>Week 37</span>
+        </div>
+
+        <div class="calendar-days">
+
+          <div class="day">
+            <div class="day-name">Mon</div>
+          </div>
+
+          <div class="day">
+            <div class="day-name">Tue</div>
+          </div>
+
+          <div class="day">
+            <div class="day-name">Wed</div>
+          </div>
+
+          <div class="day">
+            <div class="day-name">Thu</div>
+
+            <div class="appointment">
+              <strong>2:30 PM</strong>
+              New appointment
+            </div>
+          </div>
+
+          <div class="day">
+            <div class="day-name">Fri</div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PERFORMANCE -->
+
+  <section id="performance" class="dark performance">
+
+    <div class="container">
+
+      <div class="eyebrow">
+        RECEPTIONIST / PERFORMANCE
+      </div>
+
+      <h2 class="performance-heading">
+        You shouldn't have to wonder
+        what happened to your calls.
+      </h2>
+
+
+      <div class="metrics">
+
+        <div class="metric">
+          <div class="metric-value">1,284</div>
+          <div class="metric-label">
+            Calls answered
+          </div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-value">186</div>
+          <div class="metric-label">
+            Appointments
+          </div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-value">94%</div>
+          <div class="metric-label">
+            Handled without transfer
+          </div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-value">42.8k</div>
+          <div class="metric-label">
+            Opportunity captured
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- BUSINESS -->
+
+  <section class="dark business">
+
+    <div class="container business-grid">
+
+      <h2 class="business-title">
+        It knows
+        your business.
+      </h2>
+
+      <div class="business-copy">
+
+        Your hours.
+        Your services.
+        Your pricing.
+        Your policies.
+
+        <br><br>
+
+        <span>
+          It doesn't follow a generic script.
+          It follows yours.
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- INDUSTRIES -->
+
+  <section id="industries" class="industries">
+
+    <div class="container">
+
+      <div class="eyebrow">
+        BUILT FOR BUSINESSES THAT DEPEND ON THE PHONE
+      </div>
+
+      <div class="industry">
+        <div class="industry-name">Clinics</div>
+        <div class="industry-description">
+          Patient calls handled while your team stays focused.
+        </div>
+      </div>
+
+      <div class="industry">
+        <div class="industry-name">Dental</div>
+        <div class="industry-description">
+          Turn new patient calls into booked appointments.
+        </div>
+      </div>
+
+      <div class="industry">
+        <div class="industry-name">Salons</div>
+        <div class="industry-description">
+          Keep the phone covered while you're with clients.
+        </div>
+      </div>
+
+      <div class="industry">
+        <div class="industry-name">Home Services</div>
+        <div class="industry-description">
+          Capture the lead when the customer needs you.
+        </div>
+      </div>
+
+      <div class="industry">
+        <div class="industry-name">Law Firms</div>
+        <div class="industry-description">
+          Make sure important inquiries reach someone.
+        </div>
+      </div>
+
+      <div class="industry">
+        <div class="industry-name">Automotive</div>
+        <div class="industry-description">
+          Handle service calls without tying up your team.
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FINAL -->
+
+  <section id="contact" class="container final">
+
+    <div>
+
+      <div class="final-label">
+        YOUR PHONE IS ALREADY RINGING
+      </div>
+
+      <h2 class="final-title">
+        Make sure someone
+        <em>answers it.</em>
+      </h2>
+
+      <a class="final-link" href="#">
+        Get your receptionist →
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="container footer-inner">
+    <span>Always. AI Receptionist</span>
+    <span>Available 24 hours / 7 days</span>
+  </div>
+
+</footer>
+
+</body>
+</html>
+```
